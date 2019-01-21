@@ -5,6 +5,5 @@
     
     include ('../application/view/template/Header.php');
     include ('../application/view/Showdata.php');
-            
     include ('../application/view/template/Footer.php');
 ?>

@@ -16,11 +16,31 @@
          foreach($this->getList($sql1) as $key=>$value)
          {
              echo '<tr>';
-             echo "<td>".$value['category_']."</td>";
+             echo "<td>".$value['category_id']."</td>";
              echo "<td>".$value['name']."</td>";
              echo "<td>".$value['parent']."</td></tr>";
          }
         echo '</table>';
+    }
+
+    public function tree($table) 
+    {
+        $sql1 = "SELECT * FROM $table";
+        $h = $this->getList($sql1) ;
+        function show($h,$a) {
+            $n = count($h);
+            echo "<ul>";
+            for($j= 1; $j < $n; $j++) {
+                if($h[$a]['category_id'] == $h[$j]['parent']) {
+                    echo  "<li>".$h[$j]['name'];
+                    // call again function to take children of this title
+                    show($h,$j);
+                    echo "</li>";
+            }
+            }
+            echo "</ul>";
+        }
+        show($h,0);
     }
     // Hàm xóa theo id
     function deleteById($table, $id){
