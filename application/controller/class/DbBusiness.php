@@ -51,26 +51,26 @@
 
     public function treeTotal($table) {
         $sql1 = "SELECT * FROM $table";
-        $h = $this->getList($sql1) ;
-        $n = count($h);
+        $list = $this->getList($sql1) ;
+        $n = count($list);
         $y = array();
         for ($a = 0; $a < $n; $a++) {
-            if ($h[$a]['parent'] == null) {
-                echo $h[$a]['name'];
-                function showTotal($h,$firstParent) {
-                    $n = count($h);
+            if ($list[$a]['parent'] == null) {
+                echo $list[$a]['name'];
+                function showTotal($list,$firstParent) {
+                    $n = count($list);
                     echo "<ul>";
                     for($j= 1; $j < $n; $j++) {
-                        if($h[$firstParent]['category_id'] == $h[$j]['parent']) {
-                            echo  "<li>".$h[$j]['name'];
+                        if($list[$firstParent]['category_id'] == $list[$j]['parent']) {
+                            echo  "<li>".$list[$j]['name'];
                             // call again function to take children of this title
-                            showTotal($h,$j);
+                            showTotal($list,$j);
                             echo "</li>";
                         }
                     }
                     echo "</ul>";
                 }
-                showTotal($h,$a);
+                showTotal($list,$a);
             }
         }        
     }
