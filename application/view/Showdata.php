@@ -1,5 +1,6 @@
 <?php
     $a = new DbBusiness();
     $a-> showData('category');
-    $a->tree('category');
+    $a->treeSingle('category',5);
+    $a->treeTotal('category');
 ?>
