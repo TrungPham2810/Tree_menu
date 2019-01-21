@@ -26,23 +26,27 @@
     public function treeSingle($table, $id) 
     {
         $sql1 = "SELECT * FROM $table";
-        $h = $this->getList($sql1) ;
-        function show($h,$id) {
-            $n = count($h);
-            echo $h[$id]['name'];
+        $list = $this->getList($sql1) ;
+        function show($list,$id) {
+            $n = count($list);
+            for ($i = 0; $i < $n; $i++) {
+                if($list[$i]['category_id'] == $id) {
+                    echo $list[$i]['name'];
+                }
+            }
             echo "<ul>";
             for($j= 1; $j < $n; $j++) {
-                if($h[$id]['category_id'] == $h[$j]['parent']) {
-                    echo  "<li>".$h[$j]['name'];
-                    // $b = $h[$j]['category_id'];
+                if( $list[$j]['parent'] == $id ) {
+                    echo  "<li>";
+                    $b = $list[$j]['category_id'];
                     // call again function to take children of this title
-                    show($h,$j);
+                    show($list,$b);
                     echo "</li>";
                 }
             }
             echo "</ul>";
         }
-        show($h,$id);
+        show($list,$id);
     }
 
     public function treeTotal($table) {
