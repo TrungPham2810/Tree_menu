@@ -22,7 +22,7 @@
          }
         echo '</table>';
     }
-// show data with structure tree
+// show single data with structure treeSingle
     public function treeSingle($table, $id) 
     {
         $sql1 = "SELECT * FROM $table";
@@ -48,13 +48,11 @@
         }
         show($list,$id);
     }
-
+// show all data with structure tree
     public function treeTotal($table) {
         $sql1 = "SELECT * FROM $table";
         $list = $this->getList($sql1) ;
-        $n = count($list);
-        $y = array();
-        for ($a = 0; $a < $n; $a++) {
+        for ($a = 0; $a < count($list); $a++) {
             if ($list[$a]['parent'] == null) {
                 echo $list[$a]['name'];
                 function showTotal($list,$firstParent) {
